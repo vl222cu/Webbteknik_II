@@ -15,16 +15,17 @@ $dom = new DomDocument();
 			$eachCourse = curl_get_request($url);
 			$subdom = new DomDocument();
 			
+			libxml_use_internal_errors(true);
+
 			if ($subdom->loadHTML($eachCourse)) {
-				
-				$xpath = new DOMXPath($dom);
-  				$items = $xpath->query('//div[@id = "header-wrapper"]/li/li/li/a');
 
-  				foreach ($items as $item) {
+				$xpath = new DOMXPath($subdom);
+  				$courseCode = $xpath->query('//div[@id = "header-wrapper"]/ul/li/li/li/a');
+				$courseID = $courseCode->nodeValue;
 
-  					$courseID = $item->nodeValue;
-  				}
 			}
+
+			libxml_use_internal_errors(false);
 
 			$j_son = array('Course' => $course, 'URL' => $url, 'CourseID' => $courseID, 'Syllabus' => '', 'Course Description' => '');
 

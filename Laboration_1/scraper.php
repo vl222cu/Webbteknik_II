@@ -13,9 +13,20 @@ $dom = new DomDocument();
 			$course = $item->nodeValue;
 			$url = $item->getAttribute("href");
 			$eachCourse = curl_get_request($url);
+			$subdom = new DomDocument();
+			
+			if ($subdom->loadHTML($eachCourse)) {
+				
+				$xpath = new DOMXPath($dom);
+  				$items = $xpath->query('//div[@id = "header-wrapper"]/li/li/li/a');
 
-			var_dump($eachCourse);
-			$j_son = array('Course' => $course, 'URL' => $url, 'CourseID' => '', 'Syllabus' => '', 'Course Description' => '');
+  				foreach ($items as $item) {
+
+  					$courseID = $item->nodeValue;
+  				}
+			}
+
+			$j_son = array('Course' => $course, 'URL' => $url, 'CourseID' => $courseID, 'Syllabus' => '', 'Course Description' => '');
 
 			$j_sonData = json_encode($j_son);
 

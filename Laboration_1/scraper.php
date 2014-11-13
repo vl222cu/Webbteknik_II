@@ -21,9 +21,8 @@ $coursePostedBy = "";
 		}
 
 		foreach ($items as $item) {
-			var_dump(isCourse($item->getAttribute("href")));
 
-			if (strpos($item->getAttribute("href") ,"kurs")) {
+			if (isCourse($item->getAttribute("href"))) {
 
 				$course = $item->nodeValue;
 				$url = $item->getAttribute("href");
@@ -71,19 +70,19 @@ $coursePostedBy = "";
 						$coursePostedBy = $entry->firstChild->nextSibling->textContent;
 					}
 				}
+
+				$courseContent = array();
+				$courseContent['Course'] = $course;
+				$courseContent['CourseURL'] = $url;
+				$courseContent['CourseID'] = $courseID;
+				$courseContent['CourseSyllabus'] = $syllabus;
+				$courseContent['courseDescription'] = $courseInfo;
+				$courseContent['coursePostTitle'] = $coursePostTitle;
+				$courseContent['coursePostedDate'] = $coursePostedDate;
+				$courseContent['coursePostedBy'] = $coursePostedBy;
 			}
 
 			libxml_use_internal_errors(false);
-
-			$courseContent = array();
-			$courseContent['Course'] = $course;
-			$courseContent['CourseURL'] = $url;
-			$courseContent['CourseID'] = $courseID;
-			$courseContent['CourseSyllabus'] = $syllabus;
-			$courseContent['courseDescription'] = $courseInfo;
-			$courseContent['coursePostTitle'] = $coursePostTitle;
-			$courseContent['coursePostedDate'] = $coursePostedDate;
-			$courseContent['coursePostedBy'] = $coursePostedBy;
 			
 			$jsonData = json_encode($courseContent, JSON_PRETTY_PRINT);
 

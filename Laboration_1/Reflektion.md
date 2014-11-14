@@ -1,6 +1,8 @@
 Reflektion
 ==========
 
+[Länk till webbskrapan](http://webbskrapa.vivilam.com/ "Webbskrapa")
+
 ### Vad tror Du vi har för skäl till att spara det skrapade datat i JSON-format?
 
 > JSON är enkelt att jobba med och formatet är lättläst
@@ -27,11 +29,14 @@ Reflektion
 
 ### Välj ut två punkter kring din kod du tycker är värd att diskutera vid redovisningen. Det kan röra val du gjort, tekniska lösningar eller lösningar du inte är riktigt nöjd med.
 
+> 1. Koden känns aningen rörig, hade hellre strukturerat upp den enl MVC-pattern. Nu känns den som en enda stor loop vilket gjorde att det blev svårt att få till json-formatet bl a. 
+
+> 2. Hade svårt att förstå varför de kurser som hade tomma poster fick "ärva" föregående kursens poster så informationen blev fel på vissa kurser pga detta.
+
 ### Hitta ett rättsfall som handlar om webbskrapning. Redogör kort för detta.
 
->  eBay v. Bidder's Edge, där Bidder's Edge fick order om att sluta upp med att samla och indexera data som involverade i automatiska budgivningar
-> från eBays sida.
+>  eBay v. Bidder's Edge, där Bidder's Edge fick order om att sluta upp med att samla och indexera data som involverade i automatiska budgivningar på eBays sida.
 
 ### Känner du att du lärt dig något av denna uppgift?
 
-> Hm, har svårt att förstå uppgiften överhuvudtaget
+> Hm, hade svårt att förstå uppgiften men ju mer jag jobbade på den ju mer känner jag absolut att jag lärt mig en hel del. Visste inte ens att webbskrapning existerade så hela labben har vart lärorikt. 

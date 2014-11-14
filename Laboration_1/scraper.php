@@ -3,6 +3,7 @@
 $data = curl_get_request("http://coursepress.lnu.se/kurser/");
 $page = numberOfPages($data);
 $dom = new DomDocument();
+$courses = array();
 $course = "";
 $url = "";
 $courseID = "";
@@ -14,14 +15,15 @@ $coursePostedBy = "";
 $courseCount = 0;
 
 // Load the Cached json file
-/*$obj = json_decode(file_get_contents('result.json'));
-var_dump($obj);
-// Calculate if the cahced json file isn't older than 5 minutes
-$current_time = new DateTime('now');
-@$cache_time = date($obj['Last_scrape']);
-$interval = $current_time->diff($cache_time, true); */
+$file = 'result.json';
+$jsonObj = json_decode(file_get_contents($file));
 
-//if ($interval->i > 5) {
+// Calculate if the cached json file isn't older than 5 minutes
+@$cache_time = $jsonObj->Last_scrape;
+$interval = date('Y/m/d H:i:s', strtotime('- 5 minutes'));
+
+if (empty($file) || $cache_time < $interval) {
+
 	for($i=1; $i<= $page; $i++) {
 
 		$dataWithPages = curl_get_request("http://coursepress.lnu.se/kurser/?bpage=".$i);
@@ -66,7 +68,7 @@ $interval = $current_time->diff($cache_time, true); */
 						
 						foreach ($courseSyllabi as $courseSyllabus) {
 
-							if (strpos($courseSyllabus->getAttribute("href") ,"coursesyllabus")) {
+							if (strpos($courseSyllabus->getAttribute("href") ,"kursinfo")) {
 
 								$syllabus = $courseSyllabus->getAttribute("href");
 							} 
@@ -106,32 +108,38 @@ $interval = $current_time->diff($cache_time, true); */
 							$coursePostedBy = $coursePostAuthor->nodeValue;
 						}
 					
-					$courseContent = array();
-					$courseContent['Course'] = $course;
-					$courseContent['CourseURL'] = $url;
-					$courseContent['CourseID'] = $courseID;
-					$courseContent['CourseSyllabus'] = $syllabus;
-					$courseContent['courseDescription'] = $courseInfo;
-					$courseContent['coursePostTitle'] = $coursePostTitle;
-					$courseContent['coursePostedDate'] = $coursePostedDate;
-					$courseContent['coursePostedBy'] = $coursePostedBy;
+						$courseContent = array();
+						$courseContent['Course'] = $course;
+						$courseContent['CourseURL'] = $url;
+						$courseContent['CourseID'] = $courseID;
+						$courseContent['CourseSyllabus'] = $syllabus;
+						$courseContent['courseDescription'] = $courseInfo;
+						$courseContent['coursePostTitle'] = $coursePostTitle;
+						$courseContent['coursePostedDate'] = $coursePostedDate;
+						$courseContent['coursePostedBy'] = $coursePostedBy;
 
-					$courseScrapeInfo = array();
-					$courseScrapeInfo['Number_of_courses'] = $courseCount;
-					$courseScrapeInfo['Last_scrape'] = date("y/m/d h:i :s A",time()); 
-
-					$json = array_merge($courseScrapeInfo, $courseContent);
-
-				libxml_use_internal_errors(false);
-
-				// Store the fresh data into the cached file
-    			file_put_contents('result.json', json_encode($json, JSON_PRETTY_PRINT), FILE_APPEND);
-
-				$jsonData = json_encode($json, JSON_PRETTY_PRINT);
-
-				echo $jsonData . "</br>" . "</br>";
+						//Återställer variablerna till NULL för nästa kurs
+						$course = "no information";
+						$url = "no information";
+						$courseID = "no information";
+						$syllabus = "no information";
+						$courseInfo = "no information";
+						$coursePostTitle = "no information";
+						$coursePostedDate = "no information";
+						$coursePostedBy = "no information";
 
 					}
+
+				array_push($courses, $courseContent);
+
+				$courseScrapeInfo = array();
+				$courseScrapeInfo['Number_of_courses'] = $courseCount;
+				$courseScrapeInfo['Last_scrape'] = date("y/m/d h:i :s A",time()); 
+
+				$json = array_merge($courseScrapeInfo, $courses);
+
+				file_put_contents('result.json', json_encode($json, JSON_PRETTY_PRINT)); 
+
 				}
 			}
 
@@ -141,11 +149,13 @@ $interval = $current_time->diff($cache_time, true); */
 		}
 	}
 
-/*} else {
+echo "<a href='result.json'>Fil med resultat</a>";
+
+} else {
 
 	// Print out the cached results
-    echo file_get_contents('result.json');
-} */
+    echo "<a href='result.json'>Fil med resultat</a>";
+} 
 
 function curl_get_request($url) {
     
@@ -170,24 +180,25 @@ function curl_get_request($url) {
     
 }
 
+//Get paging
 function numberOfPages($data) {
 		
-		$dom = new \DOMDocument(); 
+	$dom = new \DOMDocument(); 
 	 
-		if($dom->loadHTML($data)) {
+	if($dom->loadHTML($data)) {
 
-			$xpath = new \DOMXPath($dom); 
-			$numberOfPages = $xpath->query('//div[@id = "blog-dir-pag-top"]/a[@class ="page-numbers"]');
+		$xpath = new \DOMXPath($dom); 
+		$numberOfPages = $xpath->query('//div[@id = "blog-dir-pag-top"]/a[@class ="page-numbers"]');
 
-			foreach ($numberOfPages as $numberOfPage) {
+		foreach ($numberOfPages as $numberOfPage) {
 
-				$pageNumberArr[] =  $numberOfPage->nodeValue; 
-			}
-
-			return max($pageNumberArr); 
-			
-		} else {
-
-			die("Fel vid inläsning av HTML"); 
+			$pageNumberArr[] =  $numberOfPage->nodeValue; 
 		}
+
+		return max($pageNumberArr); 
+			
+	} else {
+
+		die("Fel vid inläsning av HTML"); 
 	}
+}

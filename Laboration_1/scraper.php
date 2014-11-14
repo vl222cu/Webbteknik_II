@@ -14,7 +14,7 @@ $coursePostedDate = "";
 $coursePostedBy = "";
 $courseCount = 0;
 
-// Load the Cached json file
+// Load the cached json file
 $file = 'result.json';
 $jsonObj = json_decode(file_get_contents($file));
 

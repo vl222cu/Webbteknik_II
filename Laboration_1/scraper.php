@@ -1,6 +1,7 @@
 <?php
 
 $data = curl_get_request("http://coursepress.lnu.se/kurser/");
+$page = numberOfPages($data);
 $dom = new DomDocument();
 $course = "";
 $url = "";
@@ -10,89 +11,141 @@ $courseInfo = "";
 $coursePostTitle = "";
 $coursePostedDate = "";
 $coursePostedBy = "";
+$courseCount = 0;
 
-	if($dom->loadHTML($data)) {
+// Load the Cached json file
+/*$obj = json_decode(file_get_contents('result.json'));
+var_dump($obj);
+// Calculate if the cahced json file isn't older than 5 minutes
+$current_time = new DateTime('now');
+@$cache_time = date($obj['Last_scrape']);
+$interval = $current_time->diff($cache_time, true); */
 
-		$xpath = new DOMXPath($dom);
-		$items = $xpath->query('//ul[@id = "blogs-list"]//div[@class = "item-title"]/a');
-		
-		function isCourse ($href) {
-		 	return preg_match('/kurs/', $href, $course);
-		}
+//if ($interval->i > 5) {
+	for($i=1; $i<= $page; $i++) {
 
-		foreach ($items as $item) {
+		$dataWithPages = curl_get_request("http://coursepress.lnu.se/kurser/?bpage=".$i);
 
-			if (isCourse($item->getAttribute("href"))) {
+		if($dom->loadHTML($dataWithPages)) {
 
-				$course = $item->nodeValue;
-				$url = $item->getAttribute("href");
-				$eachCourse = curl_get_request($url);
-				$subdom = new DomDocument();
-				
-				libxml_use_internal_errors(true);
+			ini_set('max_execution_time', 300);
+			$xpath = new DOMXPath($dom);
+			$items = $xpath->query('//ul[@id = "blogs-list"]//div[@class = "item-title"]/a');
 
-				if ($subdom->loadHTML($eachCourse)) {
+			foreach ($items as $item) {
 
-					$xpath = new DOMXPath($subdom);
-	  				$courseCodes = $xpath->query('//div[@id = "header-wrapper"]//ul/li[3]/a');
+				if (strpos($item->getAttribute("href") ,"kurs")) {
+
+					$courseCount++;
+					//Kursnamn
+					$course = $item->nodeValue;
+
+					//Kurslänk
+					$url = $item->getAttribute("href");
+
+					//Hämtning av varje kurs
+					$eachCourse = curl_get_request($url);
+					$subdom = new DomDocument();
 					
-					foreach ($courseCodes as $courseCode) {
+					libxml_use_internal_errors(true);
 
-						$courseID = $courseCode->nodeValue;
-					}
+					if ($subdom->loadHTML($eachCourse)) {
 
-					$courseSyllabi = $xpath->query('//*[@id="navigation"]//ul[@class = "menu"]//a');	
-					
-					foreach ($courseSyllabi as $courseSyllabus) {
+						$xpath = new DOMXPath($subdom);
 
-						if (strpos($courseSyllabus->getAttribute("href") ,"coursesyllabus")) {
+						//Kurskod
+		  				$courseCodes = $xpath->query('//div[@id = "header-wrapper"]//ul/li[3]/a');
+						
+						foreach ($courseCodes as $courseCode) {
 
-							$syllabus = $courseSyllabus->getAttribute("href"); 
+							$courseID = $courseCode->nodeValue;
 						}
-					}
 
-					$courseDescriptions = $xpath->query('//*[@id="content"]//*[@class="entry-content"]');	
+						//Kursplan
+						$courseSyllabi = $xpath->query('//*[@id="navigation"]//ul[@class = "menu"]//a');	
+						
+						foreach ($courseSyllabi as $courseSyllabus) {
 
-					($courseDescriptions->length > 0) ? $courseInfo = trim($courseDescriptions->item(0)->textContent) : 'no information';	
+							if (strpos($courseSyllabus->getAttribute("href") ,"coursesyllabus")) {
 
-					$coursePosts = $xpath->query('//header[@class= "entry-header"]/h1[@class= "entry-title"]');
+								$syllabus = $courseSyllabus->getAttribute("href");
+							} 
+							
+						}
 
-					($coursePosts->length > 0) ? $coursePostTitle = $coursePosts->item(0)->textContent : 'no information';
+						//Kursens inledande text
+						$courseDescriptions = $xpath->query('//*[@id="content"]//*[@class="entry-content"]/p');	
 
-					$coursePostInfo = $xpath->query('//header[@class= "entry-header"]/p[@class= "entry-byline"]');
+						if ($courseDescriptions->length > 0) {
 
-					if($coursePostInfo->length > 0){
+							$courseInfo = trim($courseDescriptions->item(0)->textContent);
+						}
 
-						$entry = $coursePostInfo->item(0);
-						$date = trim($entry->firstChild->textContent);
-						preg_match('/\d{4}-\d{2}-\d{2} \d{2}:\d{2}/', $date, $match);
-						$coursePostedDate = $match[0];
-						$coursePostedBy = $entry->firstChild->nextSibling->textContent;
+						//Rubrik till senaste inlägg
+						$coursePosts = $xpath->query('//header[@class= "entry-header"]/h1[@class= "entry-title"]');
+
+						if ($coursePosts->length > 0) {
+
+							$coursePostTitle = $coursePosts->item(0)->textContent;
+						} 
+
+						//Datum och tid till senaste inlägg
+						$coursePostDates = $xpath->query('//header[@class= "entry-header"]/p[@class= "entry-byline"]');
+
+						foreach ($coursePostDates as $coursePostDate) {
+
+							preg_match('/\d{4}-\d{2}-\d{2} \d{2}:\d{2}/', $coursePostDate->nodeValue, $match);
+							$coursePostedDate = $match[0];
+						}
+
+						//Författare till senaste inlägget
+						$coursePostAuthors = $xpath->query('//header[@class= "entry-header"]/p[@class= "entry-byline"]/strong');
+
+						foreach ($coursePostAuthors as $coursePostAuthor) {
+
+							$coursePostedBy = $coursePostAuthor->nodeValue;
+						}
+					
+					$courseContent = array();
+					$courseContent['Course'] = $course;
+					$courseContent['CourseURL'] = $url;
+					$courseContent['CourseID'] = $courseID;
+					$courseContent['CourseSyllabus'] = $syllabus;
+					$courseContent['courseDescription'] = $courseInfo;
+					$courseContent['coursePostTitle'] = $coursePostTitle;
+					$courseContent['coursePostedDate'] = $coursePostedDate;
+					$courseContent['coursePostedBy'] = $coursePostedBy;
+
+					$courseScrapeInfo = array();
+					$courseScrapeInfo['Number_of_courses'] = $courseCount;
+					$courseScrapeInfo['Last_scrape'] = date("y/m/d h:i :s A",time()); 
+
+					$json = array_merge($courseScrapeInfo, $courseContent);
+
+				libxml_use_internal_errors(false);
+
+				// Store the fresh data into the cached file
+    			file_put_contents('result.json', json_encode($json, JSON_PRETTY_PRINT), FILE_APPEND);
+
+				$jsonData = json_encode($json, JSON_PRETTY_PRINT);
+
+				echo $jsonData . "</br>" . "</br>";
+
 					}
 				}
-
-				$courseContent = array();
-				$courseContent['Course'] = $course;
-				$courseContent['CourseURL'] = $url;
-				$courseContent['CourseID'] = $courseID;
-				$courseContent['CourseSyllabus'] = $syllabus;
-				$courseContent['courseDescription'] = $courseInfo;
-				$courseContent['coursePostTitle'] = $coursePostTitle;
-				$courseContent['coursePostedDate'] = $coursePostedDate;
-				$courseContent['coursePostedBy'] = $coursePostedBy;
 			}
 
-			libxml_use_internal_errors(false);
-			
-			$jsonData = json_encode($courseContent, JSON_PRETTY_PRINT);
+		} else {
 
-			echo $jsonData, "<br />" . "<br />";
+			die("Fel vid inläsning av HTML");
 		}
-
-	} else {
-
-		die("Fel vid inläsning av HTML");
 	}
+
+/*} else {
+
+	// Print out the cached results
+    echo file_get_contents('result.json');
+} */
 
 function curl_get_request($url) {
     
@@ -109,7 +162,6 @@ function curl_get_request($url) {
         CURLOPT_USERAGENT => $userAgent,// Setting the useragent
         CURLOPT_URL => $url, // Setting cURL's URL option with the $url variable passed into the function
     );
-    
     curl_setopt_array($ch, $options);
     $data = curl_exec($ch);
     curl_close($ch);
@@ -117,3 +169,25 @@ function curl_get_request($url) {
     return $data;
     
 }
+
+function numberOfPages($data) {
+		
+		$dom = new \DOMDocument(); 
+	 
+		if($dom->loadHTML($data)) {
+
+			$xpath = new \DOMXPath($dom); 
+			$numberOfPages = $xpath->query('//div[@id = "blog-dir-pag-top"]/a[@class ="page-numbers"]');
+
+			foreach ($numberOfPages as $numberOfPage) {
+
+				$pageNumberArr[] =  $numberOfPage->nodeValue; 
+			}
+
+			return max($pageNumberArr); 
+			
+		} else {
+
+			die("Fel vid inläsning av HTML"); 
+		}
+	}

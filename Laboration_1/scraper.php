@@ -39,14 +39,16 @@ if (empty($file) || $cache_time < $interval) {
 				if (strpos($item->getAttribute("href") ,"kurs")) {
 
 					$courseCount++;
-					//Kursnamn
+
+					//Getting the name of the course
 					$course = $item->nodeValue;
 
-					//Kurslänk
+					//Getting link to each course
 					$url = $item->getAttribute("href");
 
-					//Hämtning av varje kurs
+					//Get each course
 					$eachCourse = curl_get_request($url);
+
 					$subdom = new DomDocument();
 					
 					libxml_use_internal_errors(true);
@@ -55,7 +57,7 @@ if (empty($file) || $cache_time < $interval) {
 
 						$xpath = new DOMXPath($subdom);
 
-						//Kurskod
+						//Getting course code for each course
 		  				$courseCodes = $xpath->query('//div[@id = "header-wrapper"]//ul/li[3]/a');
 						
 						foreach ($courseCodes as $courseCode) {
@@ -63,7 +65,7 @@ if (empty($file) || $cache_time < $interval) {
 							$courseID = $courseCode->nodeValue;
 						}
 
-						//Kursplan
+						//Getting syllabus for each course
 						$courseSyllabi = $xpath->query('//*[@id="navigation"]//ul[@class = "menu"]//a');	
 						
 						foreach ($courseSyllabi as $courseSyllabus) {
@@ -75,7 +77,7 @@ if (empty($file) || $cache_time < $interval) {
 							
 						}
 
-						//Kursens inledande text
+						//Description to each course
 						$courseDescriptions = $xpath->query('//*[@id="content"]//*[@class="entry-content"]/p');	
 
 						if ($courseDescriptions->length > 0) {
@@ -83,7 +85,7 @@ if (empty($file) || $cache_time < $interval) {
 							$courseInfo = trim($courseDescriptions->item(0)->textContent);
 						}
 
-						//Rubrik till senaste inlägg
+						//Title to the latest post
 						$coursePosts = $xpath->query('//header[@class= "entry-header"]/h1[@class= "entry-title"]');
 
 						if ($coursePosts->length > 0) {
@@ -91,7 +93,7 @@ if (empty($file) || $cache_time < $interval) {
 							$coursePostTitle = $coursePosts->item(0)->textContent;
 						} 
 
-						//Datum och tid till senaste inlägg
+						//Date for the latest post
 						$coursePostDates = $xpath->query('//header[@class= "entry-header"]/p[@class= "entry-byline"]');
 
 						foreach ($coursePostDates as $coursePostDate) {
@@ -100,7 +102,7 @@ if (empty($file) || $cache_time < $interval) {
 							$coursePostedDate = $match[0];
 						}
 
-						//Författare till senaste inlägget
+						//Author to the latest post
 						$coursePostAuthors = $xpath->query('//header[@class= "entry-header"]/p[@class= "entry-byline"]/strong');
 
 						foreach ($coursePostAuthors as $coursePostAuthor) {
@@ -118,7 +120,7 @@ if (empty($file) || $cache_time < $interval) {
 						$courseContent['coursePostedDate'] = $coursePostedDate;
 						$courseContent['coursePostedBy'] = $coursePostedBy;
 
-						//Återställer variablerna till NULL för nästa kurs
+						//Clearing out the variables
 						$course = "no information";
 						$url = "no information";
 						$courseID = "no information";
@@ -146,7 +148,7 @@ if (empty($file) || $cache_time < $interval) {
 		} else {
 
 			die("Fel vid inläsning av HTML");
-		}
+		} 
 	}
 
 echo "<a href='result.json'>Fil med resultat</a>";
@@ -185,8 +187,8 @@ function numberOfPages($data) {
 		
 	$dom = new \DOMDocument(); 
 	 
-	if($dom->loadHTML($data)) {
-
+//	if($dom->loadHTML($data)) {
+		$dom->loadHTML($data);
 		$xpath = new \DOMXPath($dom); 
 		$numberOfPages = $xpath->query('//div[@id = "blog-dir-pag-top"]/a[@class ="page-numbers"]');
 
@@ -195,10 +197,10 @@ function numberOfPages($data) {
 			$pageNumberArr[] =  $numberOfPage->nodeValue; 
 		}
 
-		return max($pageNumberArr); 
+		return $pageNumberArr; 
 			
-	} else {
+/*	} else {
 
 		die("Fel vid inläsning av HTML"); 
-	}
+	} */
 }

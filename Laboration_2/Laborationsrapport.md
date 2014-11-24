@@ -73,5 +73,21 @@ Laborationsrapport
 
 * * *
 
+### Säkerhetshål
 
+> Autentisering saknas 
+
+### Hur säkerhetshålet kan utnyttjas
+
+> Oavsett om användaruppgifter finns i databasen eller inte så loggas användaren in 
+
+### Vad för skada säkerhetshålet kan göra
+
+> Applikationen blir tillgänglig för alla och känslig information kan läckas ut
+
+### Åtgärd av säkerhetshål
+
+> Genom att faställa användarens identitet i databasen
+
+* * *
 

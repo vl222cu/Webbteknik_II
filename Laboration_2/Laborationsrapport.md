@@ -18,3 +18,57 @@ Laborationsrapport
 > Hashar lösenordet med slumpad salt för att få unik hash
 
 * * *
+
+### Säkerhetshål
+
+> Applikationen är inte skyddad mot sql-injections
+
+### Hur säkerhetshålet kan utnyttjas
+
+> Genom att skjuta in skadlig kod som exekveras mot databasen
+
+### Vad för skada säkerhetshålet kan göra
+
+> En lyckad sql-injectionsattack tillåter angriparen att komma över känslig information i databasen såsom användaruppgifter, att manipulera databasens innehåll, att förstöra databasens innehåll eller att ta över databasservern helt och hållet
+
+### Åtgärd av säkerhetshål
+
+> Genom att parametrisera SQL-satserna 
+
+* * *
+
+### Säkerhetshål
+
+> Applikationen är inte skyddad mot sql-injections
+
+### Hur säkerhetshålet kan utnyttjas
+
+> Genom att skjuta in skadlig kod som exekveras mot databasen
+
+### Vad för skada säkerhetshålet kan göra
+
+> En lyckad sql-injectionsattack tillåter angriparen att komma över känslig information i databasen såsom användaruppgifter, att manipulera databasens innehåll, att förstöra databasens innehåll eller att ta över databasservern helt och hållet
+
+### Åtgärd av säkerhetshål
+
+> Genom att parametrisera SQL-satserna 
+
+* * *
+
+### Säkerhetshål
+
+> Applikationen är inte skyddad mot sql-injections
+
+### Hur säkerhetshålet kan utnyttjas
+
+> Genom att skjuta in skadlig kod som exekveras mot databasen
+
+### Vad för skada säkerhetshålet kan göra
+
+> En lyckad sql-injectionsattack tillåter angriparen att komma över känslig information i databasen såsom användaruppgifter, att manipulera databasens innehåll, att förstöra databasens innehåll eller att ta över databasservern helt och hållet
+
+### Åtgärd av säkerhetshål
+
+> Genom att parametrisera SQL-satserna 
+
+* * *

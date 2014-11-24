@@ -16,3 +16,5 @@ Laborationsrapport
 ### Åtgärd av säkerhetshål
 
 > Hashar lösenordet med slumpad salt för att få unik hash
+
+* * *

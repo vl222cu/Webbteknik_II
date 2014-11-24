@@ -57,18 +57,18 @@ Laborationsrapport
 
 ### Säkerhetshål
 
-> Applikationen är inte skyddad mot sql-injections
+> Validering mot ogiltiga tecken saknas i namnfält och textboxfält såsom HTML-taggar
 
 ### Hur säkerhetshålet kan utnyttjas
 
-> Genom att skjuta in skadlig kod som exekveras mot databasen
+> Genom att skicka in skadlig kod via scripttagg, a-tagg etc
 
 ### Vad för skada säkerhetshålet kan göra
 
-> En lyckad sql-injectionsattack tillåter angriparen att komma över känslig information i databasen såsom användaruppgifter, att manipulera databasens innehåll, att förstöra databasens innehåll eller att ta över databasservern helt och hållet
+> Det kan orsaka oönskade effekter i webbläsaren eller användas för att stjäla information från webbläsaren genom cross sight scripting
 
 ### Åtgärd av säkerhetshål
 
-> Genom att parametrisera SQL-satserna 
+> Genom sanering av indata
 
 * * *

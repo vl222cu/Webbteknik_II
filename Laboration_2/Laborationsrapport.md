@@ -1,6 +1,8 @@
 Laborationsrapport
 ==================
 
+## Säkerhet
+
 ### Säkerhetshål
 
 > Hashningen sker på användarnamnet och inte lösenordet. Detta gör att lösenordet används i klartext i databasen och kan återges.
@@ -126,3 +128,26 @@ Laborationsrapport
 > Genom att döda sessionen
 
 * * *
+
+## Optimering
+
+### Laddning av resurser
+
+> Javascript flyttas till precis innan </body> så att DOMen hinner laddas innan Javascripten exekveras. Detta gör att användaren har något att titta på medan Javascripten laddas i bakgrunden och ska även förbättra laddningstiden. 
+
+> Referenser: http://www.slideshare.net/valtechsweden/optimera-din-sidladdning-en-djupdykning-i-prestanda-p-webben, http://stackoverflow.com/questions/1638670/javascript-at-bottom-top-of-web-page, http://demianlabs.com/lab/post/top-or-bottom-of-the-page-where-should-you-load-your-javascript/
+
+#### Obervation innan åtgärd (utan webläsar-cache)
+
+* Requests: 15 st
+* Storlek: 841KB 
+* Laddningstid : 758ms-1s
+
+#### Obervation efter åtgärd (utan webläsar-cache)
+
+* Requests: 15 st
+* Storlek: 574 KB
+* Laddningstid : 530ms-550ms
+
+Som det verkar så hjälpte det att flytta javascripten till slutet av bodyn då laddningstiden förbättrades med en tredjedel.
+

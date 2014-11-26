@@ -133,7 +133,7 @@ Laborationsrapport
 
 ### Laddning av resurser
 
-> Javascript flyttas till precis innan </body> så att DOMen hinner laddas innan Javascripten exekveras. Detta gör att användaren har något att titta på medan Javascripten laddas i bakgrunden och ska även förbättra laddningstiden. 
+> Javascript flyttas till slutet av bodytaggen så att DOMen hinner laddas innan Javascripten exekveras. Detta gör att användaren har något att titta på medan Javascripten laddas i bakgrunden och ska även förbättra laddningstiden. 
 
 > Referenser: http://www.slideshare.net/valtechsweden/optimera-din-sidladdning-en-djupdykning-i-prestanda-p-webben, http://stackoverflow.com/questions/1638670/javascript-at-bottom-top-of-web-page, http://demianlabs.com/lab/post/top-or-bottom-of-the-page-where-should-you-load-your-javascript/
 

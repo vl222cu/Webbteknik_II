@@ -149,5 +149,5 @@ Laborationsrapport
 * Storlek: 574 KB
 * Laddningstid : 530ms-550ms
 
-Som det verkar så hjälpte det att flytta javascripten till slutet av bodyn då laddningstiden förbättrades med en tredjedel.
+> Som det verkar så hjälpte det att flytta javascripten till slutet av bodyn då laddningstiden förbättrades med en tredjedel.
 

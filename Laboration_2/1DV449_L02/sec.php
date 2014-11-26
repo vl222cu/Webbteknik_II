@@ -1,10 +1,10 @@
 <?php
 
 /**
-Just som simple scripts for session handling
+*Just som simple scripts for session handling
 */
 function sec_session_start() {
-        $session_name = 'sec_session_id'; // Set a custom session name
+        $session_name = 'vivis_kaka'; // Set a custom session name
         $secure = false; // Set to true if using https.
         ini_set('session.use_only_cookies', 1); // Forces sessions to only use cookies.
         $cookieParams = session_get_cookie_params(); // Gets current cookies params.
@@ -15,90 +15,100 @@ function sec_session_start() {
         session_regenerate_id(); // regenerated the session, delete the old one.
 }
 
+//Prevent csrf
 function checkUser() {
-	if(!session_id()) {
-		sec_session_start();
-	}
 
-	if(!isset($_SESSION["user"])) {header('HTTP/1.1 401 Unauthorized'); die();}
+	if(getCsrfToken()) {
+		
+		if(validateToken($_POST['csrfToken']) === false) {
 
-	$user = getUser($_SESSION["user"]);
-	$pswd = $user[1]["password"];
-
-	if(isset($_SESSION['login_string'])) {
-		if($_SESSION['login_string'] !== password_verify($p, $pswd)) {
-			header('HTTP/1.1 401 Unauthorized'); die();
+			session_write_close();
+			header('HTTP/1.1 401 Unauthorized'); 
+			header('location: index.php');
 		}
 	}
-	else {
-		header('HTTP/1.1 401 Unauthorized'); die();
-	}
-	return true;
-}
-
-function isUser($u, $p) {
-	$db = null;
-
-	try {
-		$db = new PDO("sqlite:db.db");
-		$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-	}
-	catch(PDOEception $e) {
-		die("Del -> " .$e->getMessage());
-	}
-	$q = "SELECT id FROM users WHERE username = '$u' AND password = '$p'";
-
-	$result;
-	$stm;
-	try {
-		$stm = $db->prepare($q);
-		$stm->execute();
-		$result = $stm->fetchAll();
-		if(!$result) {
-			return "Could not find the user";
-		}
-	}
-	catch(PDOException $e) {
-		echo("Error creating query: " .$e->getMessage());
-		return false;
-	}
-	return $result;
 	
-}
+	return true;
+} 
 
-function getUser($user) {
-	$db = null;
+function getDBPwd($u) {
 
 	try {
-		$db = new PDO("sqlite:db.db");
-		$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-	}
-	catch(PDOEception $e) {
-		die("Del -> " .$e->getMessage());
-	}
-	$q = "SELECT * FROM users WHERE username = '$user'";
 
-	$result;
-	$stm;
-	try {
-		$stm = $db->prepare($q);
-		$stm->execute();
-		$result = $stm->fetchAll();
-	}
-	catch(PDOException $e) {
-		echo("Error creating query: " .$e->getMessage());
-		return false;
-	}
+        $db = new PDO("sqlite:db.db");
+        $sql = "SELECT password FROM users WHERE username = ?";
+        $query= $db->prepare($sql);
+        $params = array($u);
+        $query->execute($params);
+        $result = $query->fetch();
 
-	return $result;
+        if(!$result) {
+
+            return false;
+        }
+    }
+
+    catch(PDOEception $e) {
+
+        die("Something went wrong, try again!");
+    }
+
+    return $result['password'];
 }
 
-function logout() {
+function verifyUserPwd($pwd, $dbPwd) {
 
-	if(!session_id()) {
-		sec_session_start();
-	}
-	session_end();
-	header('Location: index.php');
+	if(password_verify($pwd, $dbPwd)) {
+
+        return true;
+    }
+
+    return false;
 }
 
+function userIsLoggedIn() {
+
+	if (isset($_SESSION['LoggedIn']) && $_SESSION['LoggedIn']) {
+
+		return true;		
+	}
+
+	return false;
+}
+
+function getSessionControl() {
+
+	if ($_SESSION['userAgent'] === $_SERVER["HTTP_USER_AGENT"]) {
+
+		return true;
+	}
+
+	return false;
+}
+
+function setCsrfToken() {
+
+	$csrfToken = md5(uniqid(rand(), true));
+
+	return $csrfToken;
+}
+
+function getCsrfToken() {
+
+	if (isset($_POST["csrfToken"])) {
+
+		return $_POST["csrfToken"];
+	}
+
+	return NULL;
+}
+
+function validateCsrfToken($csrfToken) {
+
+	if ($csrfToken === setCsrfToken()) {
+
+		return true;
+	}
+
+	return false;
+}

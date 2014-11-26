@@ -1,7 +1,7 @@
 <?php
 
 // get the specific message
-function getMessages() {
+/*function getMessages() {
 	$db = null;
 
 	try {
@@ -9,7 +9,7 @@ function getMessages() {
 		$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 	}
 	catch(PDOEception $e) {
-		die("Del -> " .$e->getMessage());
+		die("Connectionerror, try again!");
 	}
 	
 	$q = "SELECT * FROM messages";
@@ -30,4 +30,30 @@ function getMessages() {
 		return $result;
 	else
 	 	return false;
+}*/
+
+function getMessages() {
+
+	try {
+
+        $db = new PDO("sqlite:db.db");
+        $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $sql = "SELECT * FROM messages";
+        $query= $db->prepare($sql);
+        $query->execute();
+        $result = $query->fetchAll();
+
+        if(!$result) {
+
+            return false;
+        }
+    }
+
+    catch(PDOEception $e) {
+
+        die("Something went wrong, try again!");
+    }
+
+    return $result;
 }
+

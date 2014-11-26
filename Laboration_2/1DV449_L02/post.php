@@ -3,7 +3,7 @@
 /**
 * Called from AJAX to add stuff to DB
 */
-function addToDB($message, $user) {
+/*function addToDB($message, $user) {
 	$db = null;
 	
 	try {
@@ -39,5 +39,30 @@ function addToDB($message, $user) {
 	// Send the message back to the client
 	echo "Message saved by user: " .json_encode($result);
 	
+}*/
+
+function addToDB($message, $user) {
+
+	try {
+
+        $db = new PDO("sqlite:db.db");
+        $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $sql = "INSERT INTO messages (message, name) VALUES(?, ?)";
+        $query= $db->prepare($sql);
+        $params = array($message, $user);
+        $result = $query->execute($params);
+
+        if(!$result) {
+
+            return false;
+        }
+    }
+
+    catch(PDOEception $e) {
+
+        die("Something went wrong, try again!");
+    }
+
+    echo "Message saved by user: " .$user;
 }
 

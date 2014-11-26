@@ -9,12 +9,9 @@ sec_session_start();
 */
 if(isset($_GET['function'])) {
 
-	if($_GET['function'] == 'logout') {
-		logout();
-    } 
-    elseif($_GET['function'] == 'add') {
-	    $name = $_GET["name"];
-		$message = $_GET["message"];
+	if($_GET['function'] == 'add') {
+	    $name = strip_tags(trim($_GET["name"]));
+		$message = strip_tags(trim($_GET["message"]));
 		addToDB($message, $name);
 		header("Location: test/debug.php");
     }

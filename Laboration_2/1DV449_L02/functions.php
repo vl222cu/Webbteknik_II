@@ -12,8 +12,20 @@ if(isset($_GET['function'])) {
 	if($_GET['function'] == 'add') {
 	    $name = strip_tags(trim($_GET["name"]));
 		$message = strip_tags(trim($_GET["message"]));
-		addToDB($message, $name);
-		header("Location: test/debug.php");
+		$token = $GET["token"];
+		$csrfToken = $_SESSION["csrfToken"];
+
+		if($token === $csrfToken) {
+
+			addToDB($message, $name);
+			header("Location: test/debug.php");
+
+		} else {
+
+			session_write_close();
+			die("Post message error");
+		}
+
     }
     elseif($_GET['function'] == 'getMessages') {
   	   	echo(json_encode(getMessages()));

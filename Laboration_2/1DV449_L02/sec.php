@@ -15,22 +15,6 @@ function sec_session_start() {
         session_regenerate_id(); // regenerated the session, delete the old one.
 }
 
-//Prevent csrf
-function checkUser() {
-
-	if(getCsrfToken()) {
-		
-		if(validateToken($_POST['csrfToken']) === false) {
-
-			session_write_close();
-			header('HTTP/1.1 401 Unauthorized'); 
-			header('location: index.php');
-		}
-	}
-	
-	return true;
-} 
-
 function getDBPwd($u) {
 
 	try {
@@ -93,22 +77,3 @@ function setCsrfToken() {
 	return $csrfToken;
 }
 
-function getCsrfToken() {
-
-	if (isset($_POST["csrfToken"])) {
-
-		return $_POST["csrfToken"];
-	}
-
-	return NULL;
-}
-
-function validateCsrfToken($csrfToken) {
-
-	if ($csrfToken === setCsrfToken()) {
-
-		return true;
-	}
-
-	return false;
-}

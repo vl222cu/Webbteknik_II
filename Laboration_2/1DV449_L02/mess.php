@@ -1,9 +1,7 @@
 <?php
 	require_once("get.php");
-    require_once('sec.php');
+    require_once("sec.php");
     sec_session_start();
-    checkUser();
-
 ?>
 <!DOCTYPE html>
 <html lang="sv">
@@ -47,7 +45,7 @@
                     Name:<br /> <input id="inputName" type="text" name="name" /><br />
                     Message: <br />
                     <textarea name="mess" id="inputText" cols="55" rows="6"></textarea>
-                    <input type="hidden" name="csrfToken" value="<?php echo($_SESSION['csrfToken']) ?>" />
+                    <input type="hidden" id="csrfToken" name="csrfToken" value="<?php echo($_SESSION['csrfToken']) ?>" />
                     <input class="btn btn-primary" type="button" id="buttonSend" value="Write your message" />
                 </form>
                 <span class="clear">&nbsp;</span>

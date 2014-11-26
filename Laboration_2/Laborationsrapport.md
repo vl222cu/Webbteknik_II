@@ -91,3 +91,20 @@ Laborationsrapport
 
 * * *
 
+### Säkerhetshål
+
+> Saknar skydd mot CSRF 
+
+### Hur säkerhetshålet kan utnyttjas
+
+> Genom att utnyttja en autentiserad användares webbplats för att utföra oönskade handlingar 
+
+### Vad för skada säkerhetshålet kan göra
+
+> En lyckad CSRF kan leda till att angriparen kan från användarens webbplats utan användarens kännedom göra överföringar av kapital, göra ändringar av användaruppgifter såsom lösenord, göra inköp av varor i användarens namn etc.
+
+### Åtgärd av säkerhetshål
+
+> Genom att använda sig av en gömd token som kontrolleras varje gång ett postutförande ska göras 
+
+* * *

@@ -105,6 +105,24 @@ Laborationsrapport
 
 ### Åtgärd av säkerhetshål
 
-> Genom att använda sig av en gömd token som kontrolleras varje gång ett postutförande ska göras 
+> Genom att använda sig av en gömd token som kontrolleras varje gång ett postutförande görs 
+
+* * *
+
+### Säkerhetshål
+
+> Korrekt utloggning saknas
+
+### Hur säkerhetshålet kan utnyttjas
+
+> Användaren är fortfarande inloggad via sessionen 
+
+### Vad för skada säkerhetshålet kan göra
+
+> Känslig information kan läcka ut
+
+### Åtgärd av säkerhetshål
+
+> Genom att döda sessionen
 
 * * *

@@ -192,3 +192,23 @@ Laborationsrapport
 * Laddningstid : 600ms-1s
 
 > Byter ut resurserna mot CDN och tar bort resurserna för Bootstrap och Jquery som inte längre används. Trots att resurserna minskas och även storleken så ökar laddningstiden efter denna åtgärd. Kan bero på att appen körs lokalt för tillfället. 
+
+### Spriting av bilder
+
+> För att spara på HTTP-anrop och få snabbare laddningstid gäller det att välja rätt format för bilder. Sprites är ett bättre alternativ när det gäller mindre bilder som ikoner av olika slag.
+
+> Referenser: http://www.smashingmagazine.com/2009/04/27/the-mystery-of-css-sprites-techniques-tools-and-tutorials/, http://webbriktlinjer.se/r/54-optimera-webbplatsen-for-basta-prestanda/
+
+#### Observation innan åtgärd (utan webläsar-cache)
+
+* Requests: 10 st
+* Storlek: 112 KB
+* Laddningstid : 600ms-1s
+
+#### Observation efter åtgärd (utan webläsar-cache)
+
+* Requests: 10 st
+* Storlek: 113 KB
+* Laddningstid : 500ms-800ms
+
+> Då det är så få bilder som används är det nästan ingen skillnad på laddningstiden genom att använda sprite i detta fall.

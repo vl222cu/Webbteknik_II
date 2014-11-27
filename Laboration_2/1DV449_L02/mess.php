@@ -18,17 +18,11 @@
     <link rel="shortcut icon" href="pic/favicon.png">
     <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
     <link rel="stylesheet" type="text/css" href="./css/mess.css" />
-	<script type="text/javascript" src="js/jquery.js"></script>
-	<script type="text/javascript" src="js/longpoll.js"></script>
-	<script src="js/jquery.js"></script>
-	<script src="MessageBoard.js"></script>
-	<script src="js/script.js"></script>
-	<script src="Message.js"></script>
    
 	<title>Messy Labbage</title>
   </head>
-	  
-	  	<body background="http://www.lockley.net/backgds/big_leo_minor.jpg">        
+
+	  	<body>        
 
         <div id="container">
             
@@ -52,7 +46,9 @@
             </div>
 
         </div>
-        
+        <script type="text/javascript" src="js/jquery.js"></script>
+        <script src="MessageBoard.js"></script>
+        <script src="Message.js"></script>
         <!-- This script is running to get the messages -->
 			<script>
 				$(document).ready(function() {

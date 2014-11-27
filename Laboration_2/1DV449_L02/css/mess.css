@@ -1,14 +1,9 @@
 	body{
     margin:0;
-    padding:0;
-    
+    padding:0;   
     background-color:#C3D9FF;
-    background-image:url(pic/logo.png);
-    background-repeat:no-repeat;
-    background-position:center top;
     height:4000px;
     padding-top:200px;
-    
     font-family:verdana, helvetica, Sans-Serif;
     font-size:12px;
 }
@@ -22,15 +17,11 @@
     padding-bottom:20px;
 }
 
-
-
 #numberOfMess {
     float:right;
     font-size:small;
     color:Gray;
 }
-
-html {background:url(pic/b.jpg);}
 
 .message {
     width:590px;

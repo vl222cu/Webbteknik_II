@@ -12,7 +12,6 @@
 
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.css" rel="stylesheet">
-		<script src="js/bootstrap.js"></script>
 
   </head>
 
@@ -27,6 +26,7 @@
         <button class="btn btn-lg btn-primary btn-block" type="submit">Log in</button>
       </form>
     </div> <!-- /container -->
+    <script src="js/bootstrap.js"></script>
   </body>
 </html>
 

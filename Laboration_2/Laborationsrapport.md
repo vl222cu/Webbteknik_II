@@ -137,17 +137,58 @@ Laborationsrapport
 
 > Referenser: http://www.slideshare.net/valtechsweden/optimera-din-sidladdning-en-djupdykning-i-prestanda-p-webben, http://stackoverflow.com/questions/1638670/javascript-at-bottom-top-of-web-page, http://demianlabs.com/lab/post/top-or-bottom-of-the-page-where-should-you-load-your-javascript/
 
-#### Obervation innan åtgärd (utan webläsar-cache)
+#### Observation innan åtgärd (utan webläsar-cache)
 
 * Requests: 15 st
 * Storlek: 841KB 
 * Laddningstid : 758ms-1s
 
-#### Obervation efter åtgärd (utan webläsar-cache)
+#### Observation efter åtgärd (utan webläsar-cache)
 
 * Requests: 15 st
 * Storlek: 574 KB
 * Laddningstid : 530ms-550ms
 
-> Som det verkar så hjälpte det att flytta javascripten till slutet av bodytaggen då laddningstiden förbättrades med en tredjedel ms.
+> Som det verkar så hjälpte det att flytta javascripten till slutet av bodytaggen då laddningstiden förbättrades med en tredjedel av laddningstiden innan och efter åtgärd.
 
+### Ta bort onödiga resurser
+
+> Reusurser som inte används bör tas bort då ett HTTP-anrop görs för varje resurs och varje sådant anrop tar tid och i detta fall onödig tid.
+
+> Referenser: http://webbriktlinjer.se/r/54-optimera-webbplatsen-for-basta-prestanda/
+
+#### Observation innan åtgärd (utan webläsar-cache)
+
+* Requests: 15 st
+* Storlek: 574 KB
+* Laddningstid : 530ms-550ms
+
+#### Observation efter åtgärd (utan webläsar-cache)
+
+* Requests: 10 st
+* Storlek: 523 KB
+* Laddningstid : 490ms-520ms
+
+> Det finns tre resurser som får status 404 Not Found, longpoll.js, b.jpg och logo.png. Tar bort dessa då longpoll.js saknas helt och b.jpg och logo.png inte används. CSS-filen dyn.css används inte alls så tar bort den också. Hittar även dubbla inkluderade script till jquery.js, tar bort den ena. Script.js har inget innehåll så tar bort den med. 
+
+> Laddningstiden går aningen snabbare enligt mätningen efter att ha rensat bland resurserna men inget man märker av direkt.
+
+### CDN
+
+> Länk till resurs på en central lagringsplats bör användas istället när det gäller generella bibliotek som jQuery och Bootstrap. Detta för att minska datatrafiken på ens egen server samt större sannorlikhet att klienten redan har resursen i sin cache och inte behöver hämta den på nytt. 
+
+> Referenser: http://webbriktlinjer.se/r/54-optimera-webbplatsen-for-basta-prestanda/
+
+#### Observation innan åtgärd (utan webläsar-cache)
+
+* Requests: 10 st
+* Storlek: 523 KB
+* Laddningstid : 490ms-520ms
+
+#### Observation efter åtgärd (utan webläsar-cache)
+
+* Requests: 10 st
+* Storlek: 112 KB
+* Laddningstid : 600ms-1s
+
+> Byter ut resurserna mot CDN och tar bort resurserna för Bootstrap och Jquery som inte längre används. Trots att resurserna minskas och även storleken så ökar laddningstiden efter denna åtgärd. Kan bero på att appen körs lokalt för tillfället. 

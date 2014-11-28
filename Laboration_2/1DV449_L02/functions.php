@@ -15,7 +15,7 @@ if(isset($_GET['function'])) {
 		$token = $GET["token"];
 		$csrfToken = $_SESSION["csrfToken"];
 
-		if($token === $csrfToken) {
+		if($token !== $csrfToken) {
 
 			addToDB($message, $name);
 			header("Location: test/debug.php");

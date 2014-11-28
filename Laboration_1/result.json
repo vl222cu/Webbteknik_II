@@ -1,15 +1,15 @@
 {
     "Number_of_courses": 68,
-    "Last_scrape": "14\/11\/20 05:20 :10 PM",
+    "Last_scrape": "2014\/11\/27 13:54:07",
     "0": {
-        "Course": "Webbteknik II",
-        "CourseURL": "http:\/\/coursepress.lnu.se\/kurs\/webbteknik-ii\/",
-        "CourseID": "1DV449",
-        "CourseSyllabus": "http:\/\/prod.kursinfo.lnu.se\/utbildning\/GenerateDocument.ashx?templatetype=coursesyllabus&code=1DV449&documenttype=pdf&lang=sv",
-        "courseDescription": "Denna kurs fokuserar helt p\u00c3\u00a5 webben. Kursen tar upp webbens historia, utveckling och betydelse f\u00c3\u00b6r samh\u00c3\u00a4llet, problem inom forskningen kring webben (Web Science). Kursen tar ocks\u00c3\u00a5 upp optimering och s\u00c3\u00a4kerhet i webbapplikationer. Stort fokus kommer att ligga i att kunna hantera \u00c3\u00b6ppna Webb-API:er f\u00c3\u00b6r att sammanfoga data i s\u00c3\u00a5 kallade mashup-applikationer.",
-        "coursePostTitle": "Quiz och nytt material",
-        "coursePostedDate": "2014-11-11 04:29",
-        "coursePostedBy": "John H\u00c3\u00a4ggerud"
+        "Course": "Strukturerad programmering med C++",
+        "CourseURL": "http:\/\/coursepress.lnu.se\/kurs\/strukturerad-programmering-med-cplusplus\/",
+        "CourseID": "1DV433",
+        "CourseSyllabus": "http:\/\/prod.kursinfo.lnu.se\/utbildning\/GenerateDocument.ashx?templatetype=coursesyllabus&code=1DV433&documenttype=pdf&lang=sv",
+        "courseDescription": "I denna grundkurs l\u00c3\u00a4r du dig skapa console-baserade datorprogram p\u00c3\u00a5 ett procedurorienterat s\u00c3\u00a4tt med programspr\u00c3\u00a5ket C++. Kursen best\u00c3\u00a5r av teorimoment (3,5p) och praktiska till\u00c3\u00a4mpningar (4p). Allt kursmaterial utom kurslitteraturen h\u00c3\u00a4mtas p\u00c3\u00a5 denna webbplats \u2013 logga in med ditt studentkonto f\u00c3\u00b6r att f\u00c3\u00a5 tillg\u00c3\u00a5ng till detta. (Bara\u00c2\u00a0registrerade kursdeltagare\u00c2\u00a0har tillg\u00c3\u00a5ng till diskussionsgrupp eller gruppindelningar -\u00c2\u00a0anonyma bes\u00c3\u00b6kare har\u00c2\u00a0begr\u00c3\u00a4nsad \u00c3\u00a5tkomst till\u00c2\u00a0webbmaterialet.)",
+        "coursePostTitle": "F\u00c3\u00b6rtydligande ang. Steg 3",
+        "coursePostedDate": "2014-11-12 05:12",
+        "coursePostedBy": "Anne Norling"
     },
     "1": {
         "Course": "Operativsystem",
@@ -22,6 +22,76 @@
         "coursePostedBy": "no information"
     },
     "2": {
+        "Course": "Avancerade LAN-teknologier",
+        "CourseURL": "http:\/\/coursepress.lnu.se\/kurs\/avancerade-lan-teknologier\/",
+        "CourseID": "1DV447",
+        "CourseSyllabus": "http:\/\/prod.kursinfo.lnu.se\/utbildning\/GenerateDocument.ashx?templatetype=coursesyllabus&code=1DV447&documenttype=pdf&lang=sv",
+        "courseDescription": "\u00c3\u0085rets upplaga, den kanske sista, av kursen drar ig\u00c3\u00a5ng den 4 november klockan 13:15 i Ny104.",
+        "coursePostTitle": "Inst\u00c3\u00a4lld f\u00c3\u00b6rel\u00c3\u00a4sning",
+        "coursePostedDate": "2014-11-06 03:55",
+        "coursePostedBy": "Thomas Ivarsson"
+    },
+    "3": {
+        "Course": "Klientbaserad webbutveckling",
+        "CourseURL": "http:\/\/coursepress.lnu.se\/kurs\/klientbaserad-webbutveckling\/",
+        "CourseID": "1DV435",
+        "CourseSyllabus": "http:\/\/prod.kursinfo.lnu.se\/utbildning\/GenerateDocument.ashx?templatetype=coursesyllabus&code=1DV435&documenttype=pdf&lang=sv",
+        "courseDescription": "I denna kurs kommer fokus ligga p\u00c3\u00a5 teknik och praktik kring byggandet av webbplatser med fokus p\u00c3\u00a5 klientbaserad webbutveckling. Kursen fokuserar dels p\u00c3\u00a5 modern utveckling med HTML5 och CSS samt \u00c3\u00a4ven p\u00c3\u00a5 grundl\u00c3\u00a4ggande programmering med JavaScript som programmeringsspr\u00c3\u00a5k. Kursen avslutas med ett st\u00c3\u00b6rre projekt d\u00c3\u00a4r dessa tekniker anv\u00c3\u00a4nds.",
+        "coursePostTitle": "Inst\u00c3\u00a4lld\/flyttad f\u00c3\u00b6rel\u00c3\u00a4sning",
+        "coursePostedDate": "2014-11-10 04:29",
+        "coursePostedBy": "John H\u00c3\u00a4ggerud"
+    },
+    "4": {
+        "Course": "Webbteknik II",
+        "CourseURL": "http:\/\/coursepress.lnu.se\/kurs\/webbteknik-ii\/",
+        "CourseID": "1DV449",
+        "CourseSyllabus": "http:\/\/prod.kursinfo.lnu.se\/utbildning\/GenerateDocument.ashx?templatetype=coursesyllabus&code=1DV449&documenttype=pdf&lang=sv",
+        "courseDescription": "Denna kurs fokuserar helt p\u00c3\u00a5 webben. Kursen tar upp webbens historia, utveckling och betydelse f\u00c3\u00b6r samh\u00c3\u00a4llet, problem inom forskningen kring webben (Web Science). Kursen tar ocks\u00c3\u00a5 upp optimering och s\u00c3\u00a4kerhet i webbapplikationer. Stort fokus kommer att ligga i att kunna hantera \u00c3\u00b6ppna Webb-API:er f\u00c3\u00b6r att sammanfoga data i s\u00c3\u00a5 kallade mashup-applikationer.",
+        "coursePostTitle": "Boka redovisning (och restredovisning)",
+        "coursePostedDate": "2014-11-12 02:26",
+        "coursePostedBy": "John H\u00c3\u00a4ggerud"
+    },
+    "5": {
+        "Course": "RIA-utveckling med JavaScript",
+        "CourseURL": "http:\/\/coursepress.lnu.se\/kurs\/ria-utveckling-med-javascript\/",
+        "CourseID": "2DV407",
+        "CourseSyllabus": "http:\/\/prod.kursinfo.lnu.se\/utbildning\/GenerateDocument.ashx?templatetype=coursesyllabus&code=2DV407&documenttype=pdf&lang=sv",
+        "courseDescription": "\u2026till kurswebben f\u00c3\u00b6r Linn\u00c3\u00a9universitets kurs RIA-utveckling med JavaScript som g\u00c3\u00a5r av stapeln andra delen av h\u00c3\u00b6stterminen 2014! Denna kurs ges som en del av det frivilliga tredje \u00c3\u00a5ret p\u00c3\u00a5 programmet f\u00c3\u00b6r Webbprogrammerare\u00c2\u00a0samt Utvecklare av digitala tj\u00c3\u00a4nster. Hela kursen ges p\u00c3\u00a5 distans, inga aktiviteter p\u00c3\u00a5 Campus f\u00c3\u00b6rekommer.",
+        "coursePostTitle": "Uppdatering av React Router",
+        "coursePostedDate": "2014-11-03 05:46",
+        "coursePostedBy": "David Waller"
+    },
+    "6": {
+        "Course": "Iterativ mjukvaruutveckling",
+        "CourseURL": "http:\/\/coursepress.lnu.se\/kurs\/iterativ-mjukvaruutveckling\/",
+        "CourseID": "1DV404",
+        "CourseSyllabus": "http:\/\/prod.kursinfo.lnu.se\/utbildning\/GenerateDocument.ashx?templatetype=coursesyllabus&code=1DV404&documenttype=pdf&lang=sv",
+        "courseDescription": "Syfte och Inneh\u00c3\u00a5ll",
+        "coursePostTitle": "Handledningspass 25\/11",
+        "coursePostedDate": "2014-11-05 12:23",
+        "coursePostedBy": "Jesper Andersson"
+    },
+    "7": {
+        "Course": "Webbteknik I",
+        "CourseURL": "http:\/\/coursepress.lnu.se\/kurs\/webbteknik-i\/",
+        "CourseID": "1DV403",
+        "CourseSyllabus": "http:\/\/prod.kursinfo.lnu.se\/utbildning\/GenerateDocument.ashx?templatetype=coursesyllabus&code=1DV403&documenttype=pdf&lang=sv",
+        "courseDescription": "Kursen Webbteknik I \u00c3\u00a4r en kurs som inom ramen f\u00c3\u00b6r programmen \u00e2\u0080\u009dWebbprogrammerare\u00e2\u0080\u009d och \u00e2\u0080\u009dUtvecklare av digitala tj\u00c3\u00a4nster\u00e2\u0080\u009d vid Linn\u00c3\u00a9universitetet i Kalmar och genomf\u00c3\u00b6rs p\u00c3\u00a5 campus s\u00c3\u00a5v\u00c3\u00a4l som distans.",
+        "coursePostTitle": "Inst\u00c3\u00a4lld f\u00c3\u00b6rel\u00c3\u00a4sning",
+        "coursePostedDate": "2014-10-20 03:40",
+        "coursePostedBy": "Johan Leitet"
+    },
+    "8": {
+        "Course": "ASP.NET MVC",
+        "CourseURL": "http:\/\/coursepress.lnu.se\/kurs\/aspnet-mvc\/",
+        "CourseID": "1DV409",
+        "CourseSyllabus": "http:\/\/prod.kursinfo.lnu.se\/utbildning\/GenerateDocument.ashx?templatetype=coursesyllabus&code=1DV409&documenttype=pdf&lang=sv",
+        "courseDescription": "Kursen ASP.NET MVC \u00c3\u00a4r en kurs som inom ramen f\u00c3\u00b6r programmet \u00e2\u0080\u009dWebbprogrammerare\u00e2\u0080\u009d vid Linn\u00c3\u00a9universitetet i Kalmar och genomf\u00c3\u00b6rs p\u00c3\u00a5 campus s\u00c3\u00a5v\u00c3\u00a4l som distans. Kursen behandlar planering och skapade av webbapplikationer med ASP.NET MVC 5. Webbapplikationernas persistenta data lagras i databaser och hanteras med fr\u00c3\u00a4mst Entity Framework.",
+        "coursePostTitle": "Du har v\u00c3\u00a4l inte missat att\u2026",
+        "coursePostedDate": "2014-11-05 11:13",
+        "coursePostedBy": "Mats Loock"
+    },
+    "9": {
         "Course": "Grafisk design",
         "CourseURL": "http:\/\/coursepress.lnu.se\/kurs\/grafisk-design\/",
         "CourseID": "1DI101",
@@ -31,7 +101,7 @@
         "coursePostedDate": "2014-11-14 03:15",
         "coursePostedBy": "Tove Martens"
     },
-    "3": {
+    "10": {
         "Course": "Mjukvarutestning (Software Testing)",
         "CourseURL": "http:\/\/coursepress.lnu.se\/kurs\/mjukvarutestning\/",
         "CourseID": "2DV110",
@@ -41,7 +111,7 @@
         "coursePostedDate": "2014-11-10 01:27",
         "coursePostedBy": "Daniel Toll"
     },
-    "4": {
+    "11": {
         "Course": "N\u00c3\u00a4tverksprojekt",
         "CourseURL": "http:\/\/coursepress.lnu.se\/kurs\/natverksprojekt\/",
         "CourseID": "1DV420",
@@ -51,27 +121,7 @@
         "coursePostedDate": "2014-09-11 04:00",
         "coursePostedBy": "Mathias Hedenborg"
     },
-    "5": {
-        "Course": "Strukturerad programmering med C++",
-        "CourseURL": "http:\/\/coursepress.lnu.se\/kurs\/strukturerad-programmering-med-cplusplus\/",
-        "CourseID": "1DV433",
-        "CourseSyllabus": "http:\/\/prod.kursinfo.lnu.se\/utbildning\/GenerateDocument.ashx?templatetype=coursesyllabus&code=1DV433&documenttype=pdf&lang=sv",
-        "courseDescription": "I denna grundkurs l\u00c3\u00a4r du dig skapa console-baserade datorprogram p\u00c3\u00a5 ett procedurorienterat s\u00c3\u00a4tt med programspr\u00c3\u00a5ket C++. Kursen best\u00c3\u00a5r av teorimoment (3,5p) och praktiska till\u00c3\u00a4mpningar (4p). Allt kursmaterial utom kurslitteraturen h\u00c3\u00a4mtas p\u00c3\u00a5 denna webbplats \u2013 logga in med ditt studentkonto f\u00c3\u00b6r att f\u00c3\u00a5 tillg\u00c3\u00a5ng till detta. (Bara\u00c2\u00a0registrerade kursdeltagare\u00c2\u00a0har tillg\u00c3\u00a5ng till diskussionsgrupp eller gruppindelningar -\u00c2\u00a0anonyma bes\u00c3\u00b6kare har\u00c2\u00a0begr\u00c3\u00a4nsad \u00c3\u00a5tkomst till\u00c2\u00a0webbmaterialet.)",
-        "coursePostTitle": "Bra jobbat med f\u00c3\u00b6rsta kurssteget!",
-        "coursePostedDate": "2014-11-06 09:28",
-        "coursePostedBy": "Anne Norling"
-    },
-    "6": {
-        "Course": "Iterativ mjukvaruutveckling",
-        "CourseURL": "http:\/\/coursepress.lnu.se\/kurs\/iterativ-mjukvaruutveckling\/",
-        "CourseID": "1DV404",
-        "CourseSyllabus": "http:\/\/prod.kursinfo.lnu.se\/utbildning\/GenerateDocument.ashx?templatetype=coursesyllabus&code=1DV404&documenttype=pdf&lang=sv",
-        "courseDescription": "Syfte och Inneh\u00c3\u00a5ll",
-        "coursePostTitle": "Laboration 1 tillg\u00c3\u00a4nglig",
-        "coursePostedDate": "2014-11-05 12:23",
-        "coursePostedBy": "Jesper Andersson"
-    },
-    "7": {
+    "12": {
         "Course": "Objektorienterad analys och design med UML",
         "CourseURL": "http:\/\/coursepress.lnu.se\/kurs\/objektorienterad-analys-och-design-med-uml\/",
         "CourseID": "1DV407",
@@ -81,7 +131,7 @@
         "coursePostedDate": "2014-10-30 05:29",
         "coursePostedBy": "Tobias Ohlsson"
     },
-    "8": {
+    "13": {
         "Course": "Grundl\u00c3\u00a4ggande spelprogrammering",
         "CourseURL": "http:\/\/coursepress.lnu.se\/kurs\/grundlaggande-spelprogrammering\/",
         "CourseID": "1DV437",
@@ -91,27 +141,7 @@
         "coursePostedDate": "2014-11-03 03:23",
         "coursePostedBy": "Daniel Toll"
     },
-    "9": {
-        "Course": "Klientbaserad webbutveckling",
-        "CourseURL": "http:\/\/coursepress.lnu.se\/kurs\/klientbaserad-webbutveckling\/",
-        "CourseID": "1DV435",
-        "CourseSyllabus": "http:\/\/prod.kursinfo.lnu.se\/utbildning\/GenerateDocument.ashx?templatetype=coursesyllabus&code=1DV435&documenttype=pdf&lang=sv",
-        "courseDescription": "I denna kurs kommer fokus ligga p\u00c3\u00a5 teknik och praktik kring byggandet av webbplatser med fokus p\u00c3\u00a5 klientbaserad webbutveckling. Kursen fokuserar dels p\u00c3\u00a5 modern utveckling med HTML5 och CSS samt \u00c3\u00a4ven p\u00c3\u00a5 grundl\u00c3\u00a4ggande programmering med JavaScript som programmeringsspr\u00c3\u00a5k. Kursen avslutas med ett st\u00c3\u00b6rre projekt d\u00c3\u00a4r dessa tekniker anv\u00c3\u00a4nds.",
-        "coursePostTitle": "Demonstration av menyskapande",
-        "coursePostedDate": "2014-11-06 01:37",
-        "coursePostedBy": "John H\u00c3\u00a4ggerud"
-    },
-    "10": {
-        "Course": "ASP.NET MVC",
-        "CourseURL": "http:\/\/coursepress.lnu.se\/kurs\/aspnet-mvc\/",
-        "CourseID": "1DV409",
-        "CourseSyllabus": "http:\/\/prod.kursinfo.lnu.se\/utbildning\/GenerateDocument.ashx?templatetype=coursesyllabus&code=1DV409&documenttype=pdf&lang=sv",
-        "courseDescription": "Kursen ASP.NET MVC \u00c3\u00a4r en kurs som inom ramen f\u00c3\u00b6r programmet \u00e2\u0080\u009dWebbprogrammerare\u00e2\u0080\u009d vid Linn\u00c3\u00a9universitetet i Kalmar och genomf\u00c3\u00b6rs p\u00c3\u00a5 campus s\u00c3\u00a5v\u00c3\u00a4l som distans. Kursen behandlar planering och skapade av webbapplikationer med ASP.NET MVC 5. Webbapplikationernas persistenta data lagras i databaser och hanteras med fr\u00c3\u00a4mst Entity Framework.",
-        "coursePostTitle": "Schema\u00c3\u00a4ndring",
-        "coursePostedDate": "2014-10-31 01:10",
-        "coursePostedBy": "Mats Loock"
-    },
-    "11": {
+    "14": {
         "Course": "Inledande programmering med C#",
         "CourseURL": "http:\/\/coursepress.lnu.se\/kurs\/inledande-programmering-med-csharp\/",
         "CourseID": "1DV402",
@@ -120,36 +150,6 @@
         "coursePostTitle": "Ja, du kan fortfarande restredovisa laborationsuppgifter",
         "coursePostedDate": "2014-11-06 13:11",
         "coursePostedBy": "Mats Loock"
-    },
-    "12": {
-        "Course": "RIA-utveckling med JavaScript",
-        "CourseURL": "http:\/\/coursepress.lnu.se\/kurs\/ria-utveckling-med-javascript\/",
-        "CourseID": "2DV407",
-        "CourseSyllabus": "http:\/\/prod.kursinfo.lnu.se\/utbildning\/GenerateDocument.ashx?templatetype=coursesyllabus&code=2DV407&documenttype=pdf&lang=sv",
-        "courseDescription": "\u2026till kurswebben f\u00c3\u00b6r Linn\u00c3\u00a9universitets kurs RIA-utveckling med JavaScript som g\u00c3\u00a5r av stapeln andra delen av h\u00c3\u00b6stterminen 2014! Denna kurs ges som en del av det frivilliga tredje \u00c3\u00a5ret p\u00c3\u00a5 programmet f\u00c3\u00b6r Webbprogrammerare\u00c2\u00a0samt Utvecklare av digitala tj\u00c3\u00a4nster. Hela kursen ges p\u00c3\u00a5 distans, inga aktiviteter p\u00c3\u00a5 Campus f\u00c3\u00b6rekommer.",
-        "coursePostTitle": "Ready set go!",
-        "coursePostedDate": "2014-11-03 05:46",
-        "coursePostedBy": "David Waller"
-    },
-    "13": {
-        "Course": "Webbteknik I",
-        "CourseURL": "http:\/\/coursepress.lnu.se\/kurs\/webbteknik-i\/",
-        "CourseID": "1DV403",
-        "CourseSyllabus": "http:\/\/prod.kursinfo.lnu.se\/utbildning\/GenerateDocument.ashx?templatetype=coursesyllabus&code=1DV403&documenttype=pdf&lang=sv",
-        "courseDescription": "Kursen Webbteknik I \u00c3\u00a4r en kurs som inom ramen f\u00c3\u00b6r programmen \u00e2\u0080\u009dWebbprogrammerare\u00e2\u0080\u009d och \u00e2\u0080\u009dUtvecklare av digitala tj\u00c3\u00a4nster\u00e2\u0080\u009d vid Linn\u00c3\u00a9universitetet i Kalmar och genomf\u00c3\u00b6rs p\u00c3\u00a5 campus s\u00c3\u00a5v\u00c3\u00a4l som distans.",
-        "coursePostTitle": "Programmeringsstuga",
-        "coursePostedDate": "2014-09-25 10:43",
-        "coursePostedBy": "Johan Leitet"
-    },
-    "14": {
-        "Course": "Avancerade LAN-teknologier",
-        "CourseURL": "http:\/\/coursepress.lnu.se\/kurs\/avancerade-lan-teknologier\/",
-        "CourseID": "1DV447",
-        "CourseSyllabus": "http:\/\/prod.kursinfo.lnu.se\/utbildning\/GenerateDocument.ashx?templatetype=coursesyllabus&code=1DV447&documenttype=pdf&lang=sv",
-        "courseDescription": "\u00c3\u0085rets upplaga, den kanske sista, av kursen drar ig\u00c3\u00a5ng den 4 november klockan 13:15 i Ny104.",
-        "coursePostTitle": "Fredagens \u201credovisning\u201d",
-        "coursePostedDate": "2014-11-06 03:55",
-        "coursePostedBy": "Thomas Ivarsson"
     },
     "15": {
         "Course": "Design av grafiska gr\u00c3\u00a4nssnitt",

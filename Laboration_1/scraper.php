@@ -14,6 +14,29 @@ $coursePostedDate = "";
 $coursePostedBy = "";
 $courseCount = 0;
 
+//Get paging
+function numberOfPages($data) {
+		
+	$dom = new \DOMDocument(); 
+
+//	if($dom->loadHTML($data)) {
+		$dom->loadHTML($data);
+		$xpath = new \DOMXPath($dom); 
+		$numberOfPages = $xpath->query('//div[@id = "blog-dir-pag-top"]/a[@class ="page-numbers"]');
+
+		foreach ($numberOfPages as $numberOfPage) {
+
+			$pageNumberArr[] =  $numberOfPage->nodeValue; 
+		}
+
+		return max($pageNumberArr); 
+			
+/*	} else {
+
+		die("Fel vid inläsning av HTML"); 
+	}*/
+}
+
 // Load the cached json file
 $file = 'result.json';
 $jsonObj = json_decode(file_get_contents($file));
@@ -27,6 +50,8 @@ if (empty($file) || $cache_time < $interval) {
 	for($i=1; $i<= $page; $i++) {
 
 		$dataWithPages = curl_get_request("http://coursepress.lnu.se/kurser/?bpage=".$i);
+
+		libxml_use_internal_errors(true);
 
 		if($dom->loadHTML($dataWithPages)) {
 
@@ -136,7 +161,7 @@ if (empty($file) || $cache_time < $interval) {
 
 				$courseScrapeInfo = array();
 				$courseScrapeInfo['Number_of_courses'] = $courseCount;
-				$courseScrapeInfo['Last_scrape'] = date("y/m/d h:i :s A",time()); 
+				$courseScrapeInfo['Last_scrape'] = date('Y/m/d H:i:s'); 
 
 				$json = array_merge($courseScrapeInfo, $courses);
 
@@ -182,25 +207,4 @@ function curl_get_request($url) {
     
 }
 
-//Get paging
-function numberOfPages($data) {
-		
-	$dom = new \DOMDocument(); 
-	 
-//	if($dom->loadHTML($data)) {
-		$dom->loadHTML($data);
-		$xpath = new \DOMXPath($dom); 
-		$numberOfPages = $xpath->query('//div[@id = "blog-dir-pag-top"]/a[@class ="page-numbers"]');
 
-		foreach ($numberOfPages as $numberOfPage) {
-
-			$pageNumberArr[] =  $numberOfPage->nodeValue; 
-		}
-
-		return $pageNumberArr; 
-			
-/*	} else {
-
-		die("Fel vid inläsning av HTML"); 
-	} */
-}

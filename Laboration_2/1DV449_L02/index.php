@@ -9,9 +9,8 @@
     <link rel="shortcut icon" href="ico/favicon.png">
     <link rel="stylesheet" type="text/css" href="./css/customstyle.css" />
     <title>Mezzy Labbage - Logga in</title>
-
-    <!-- Bootstrap core CSS -->
-    <link href="css/bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" />
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
 
   </head>
 
@@ -26,7 +25,6 @@
         <button class="btn btn-lg btn-primary btn-block" type="submit">Log in</button>
       </form>
     </div> <!-- /container -->
-    <script src="js/bootstrap.js"></script>
   </body>
 </html>
 

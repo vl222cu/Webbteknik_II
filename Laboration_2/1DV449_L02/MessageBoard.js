@@ -88,17 +88,13 @@ var MessageBoard = {
        
         // Clock button
         aTag = document.createElement("a");
+        aTag.className = "sprite";
         aTag.href="#";
         aTag.onclick = function(){
 			MessageBoard.showTime(messageID);
 			return false;			
 		}
-        
-        var imgClock = document.createElement("img");
-        imgClock.src="pic/clock.png";
-        imgClock.alt="Show creation time";
-        
-        aTag.appendChild(imgClock);
+
         div.appendChild(aTag);
        
         // Message text
@@ -134,17 +130,7 @@ var MessageBoard = {
          var showTime = "Created "+time.toLocaleDateString()+" at "+time.toLocaleTimeString();
 
          alert(showTime);
-    },
-/*    logout: function() {
-
-        $.ajax({
-            type: "GET",
-            url: "functions.php",
-            data: {function: "logout"}
-        }).done(function(data) {
-            alert("You are logged out");
-        });
-    }*/
-}
+    }
+};
 
 window.onload = MessageBoard.init;

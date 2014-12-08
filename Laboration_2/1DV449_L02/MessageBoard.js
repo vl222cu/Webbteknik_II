@@ -3,6 +3,7 @@ var MessageBoard = {
     messages: [],
     textField: null,
     messageArea: null,
+    lastMsgCount: 0,
 
     init:function(e)
     {
@@ -11,7 +12,6 @@ var MessageBoard = {
 		    MessageBoard.nameField = document.getElementById("inputName");
             MessageBoard.messageArea = document.getElementById("messagearea");
             MessageBoard.tokenField = document.getElementById("csrfToken");
-            console.log(MessageBoard.tokenField.value);
     
             // Add eventhandlers    
             document.getElementById("inputText").onfocus = function(e){ this.className = "focus"; }
@@ -28,33 +28,47 @@ var MessageBoard = {
                                                         return false;
                                                     }
                                                 }
-    
+    MessageBoard.getMessages();
     },
     getMessages:function() {
-        console.log("INNE");
-        $.ajax({
-			type: "GET",
-			url: "functions.php",
-			data: {function: "getMessages"}
-		}).done(function(data) { // called when the AJAX call is ready
-						
-			data = JSON.parse(data);
-		
-			
-			for(var mess in data) {
-				var obj = data[mess];
-			    var text = obj.name +" said:\n" +obj.message;
-				var mess = new Message(text, new Date());
-                var messageID = MessageBoard.messages.push(mess)-1;
-    
-                MessageBoard.renderMessage(messageID);
-				
-			}
-			document.getElementById("nrOfMessages").innerHTML = MessageBoard.messages.length;
-			
-		});
-	
 
+        var ajaxCall = function() {
+
+            $.ajax({
+    			type: "GET",
+    			url: "functions.php",
+    			data: {function: "getMessages"}
+    		}).done(function(data) { // called when the AJAX call is ready
+    			var msgCounter = 0;			
+    			data = JSON.parse(data);
+
+                for(var msg in data) {
+                    msgCounter++;
+                }
+    			if(msgCounter > MessageBoard.lastMsgCount) {
+
+                    MessageBoard.lastMsgCount = msgCounter;
+                    MessageBoard.messageArea.innerHTML = "";
+
+        			for(var mess in data) {
+        				var obj = data[mess];
+        			    var text = obj.name +" said:\n" +obj.message;
+        				var mess = new Message(text, new Date());
+                        var messageID = MessageBoard.messages.push(mess)-1;
+
+                        MessageBoard.renderMessage(messageID);
+        				
+        			}
+        			document.getElementById("nrOfMessages").innerHTML = msgCounter;
+        		}	
+    		});
+	    }
+
+        setInterval(function() {
+            ajaxCall();
+        },2000);
+
+        ajaxCall();
     },
     sendMessage:function(){
         
@@ -66,7 +80,7 @@ var MessageBoard = {
 		  	url: "functions.php",
 		  	data: {function: "add", name: MessageBoard.nameField.value, message: MessageBoard.textField.value, token: MessageBoard.tokenField.value}
 		}).done(function(data) {
-		  alert("Your message is saved! Reload the page for watching it");
+		  window.location.reload();
 		});
     
     },
@@ -104,7 +118,7 @@ var MessageBoard = {
             
         // Time - Should fix on server!
         var spanDate = document.createElement("span");
-        spanDate.appendChild(document.createTextNode(MessageBoard.messages[messageID].getDateText()))
+        spanDate.appendChild(document.createTextNode(MessageBoard.messages[messageID].getDateText()));
 
         div.appendChild(spanDate);        
         

@@ -41,15 +41,15 @@
 	
 }*/
 
-function addToDB($message, $user, $time) {
+function addToDB($message, $user) {
 
 	try {
 
         $db = new PDO("sqlite:db.db");
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $sql = "INSERT INTO messages (message, name, inserttime) VALUES(?, ?, ?)";
+        $sql = "INSERT INTO messages (message, name) VALUES(?, ?)";
         $query= $db->prepare($sql);
-        $params = array($message, $user, $time);
+        $params = array($message, $user);
         $result = $query->execute($params);
 
         if(!$result) {
@@ -62,7 +62,5 @@ function addToDB($message, $user, $time) {
 
         die("Something went wrong, try again!");
     }
-
-    echo "Message saved by user: " .$user;
 }
 

@@ -38,7 +38,7 @@ function getMessages() {
 
         $db = new PDO("sqlite:db.db");
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $sql = "SELECT * FROM messages";
+        $sql = "SELECT * FROM messages ORDER BY dateAdded desc";
         $query= $db->prepare($sql);
         $query->execute();
         $result = $query->fetchAll();

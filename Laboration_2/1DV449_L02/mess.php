@@ -49,11 +49,5 @@
         </div>
         <script src="MessageBoard.js"></script>
         <script src="Message.js"></script>
-        <!-- This script is running to get the messages -->
-			<script>
-				$(document).ready(function() {
-					MessageBoard.getMessages();
-				});
-			</script>
 	</body>
 	</html>

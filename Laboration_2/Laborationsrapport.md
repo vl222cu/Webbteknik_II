@@ -149,7 +149,9 @@ Laborationsrapport
 * Storlek: 574 KB
 * Laddningstid : 530ms-550ms
 
-> Som det verkar så hjälpte det att flytta javascripten till slutet av bodytaggen då laddningstiden förbättrades med en tredjedel av laddningstiden innan och efter åtgärd.
+> Som det verkar så hjälpte det att flytta javascripten till slutet av bodytaggen då laddningstiden förbättrades med en tredjedel av laddningstiden efter åtgärd.
+
+* * *
 
 ### Ta bort onödiga resurser
 
@@ -173,6 +175,8 @@ Laborationsrapport
 
 > Laddningstiden går aningen snabbare enligt mätningen efter att ha rensat bland resurserna men inget man märker av direkt.
 
+* * *
+
 ### CDN
 
 > Länk till resurs på en central lagringsplats bör användas istället när det gäller generella bibliotek som jQuery och Bootstrap. Detta för att minska datatrafiken på ens egen server samt större sannorlikhet att klienten redan har resursen i sin cache och inte behöver hämta den på nytt. 
@@ -193,6 +197,8 @@ Laborationsrapport
 
 > Byter ut resurserna mot CDN och tar bort resurserna för Bootstrap och Jquery som inte längre används. Trots att resurserna minskas och även storleken så ökar laddningstiden efter denna åtgärd. Kan bero på att appen körs lokalt för tillfället. 
 
+* * *
+
 ### Spriting av bilder
 
 > För att spara på HTTP-anrop och få snabbare laddningstid gäller det att välja rätt format för bilder. Sprites är ett bättre alternativ när det gäller mindre bilder som ikoner av olika slag.
@@ -212,3 +218,14 @@ Laborationsrapport
 * Laddningstid : 500ms-800ms
 
 > Då det är så få bilder som används är det nästan ingen skillnad på laddningstiden genom att använda sprite i detta fall.
+
+* * *
+
+### Long-Polling
+
+> Min lösning för long-polling har jag placerat i getMessages-funktionen i filen MessageBoard.js i och med det är i denna funktion som meddelanden hämtas från databasen. Jag har kapslat in ajaxanropet som egen funktion som i sin tur anropas första gången när man loggar in. Därefter har jag använt funktionen setInterval som gör ett anrop till ajaxfunktionen varannan sek för att stämma av om det kommit till några nya meddelanden som en räknare håller koll på mellan klienten och servern. Genom att radera messageArea och loopa igenom JSON-arrayen uppdateras samtliga meddelanden efter den timestamp de fått i databasen när meddelandet skapades. Då jag har använt mig av ORDER BY DESC i SQL-förfrågan vid hämtning av meddelanden i databasen hamnar det sista skrivna meddelandet högst upp i meddelandelistan.
+
+> Fördelarna med denna lösning är att jag inte behövde skriva om koden alldeles för mycket och kunde använda mig av den kod som redan finns tillgänglig vilket sparade mig tid samt att nya meddelanden pushas upp med en gång i meddelandelistan. 
+
+> Nackdelen med denna lösning är att setInterval pågår i oändlighet så länge användaren är inloggad vilket gör att det blir en ständing upp -och nedkoppling mellan server och klient samt överföring av den stora http headern vid varje uppdatering är kostsamt ur en bandbredd och batteriförbruknings synvinkel.
+

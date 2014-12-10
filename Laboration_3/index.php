@@ -27,12 +27,12 @@
                 <div class='pull-top panel panel-info' >
                     <div class="panel-heading">
                     <h3>Trafikrapporter</h3></div>
-                        <div class="list-group">
-                            <a class="list-group-item" href="#"><i class="fa fa-home fa-fw"></i>&nbsp; Alla Kategorier</a>
-                            <a class="list-group-item" href="#"><i class="fa fa-car fa-fw"></i>&nbsp; Vägtrafik</a>
-                            <a class="list-group-item" href="#"><i class="fa fa-bus fa-fw"></i>&nbsp; Kollektivtrafik</a>
-                            <a class="list-group-item" href="#"><i class="fa fa-exclamation-triangle fa-fw"></i>&nbsp; Planerad störning</a>
-                            <a class="list-group-item" href="#"><i class="fa fa-cube fa-fw"></i>&nbsp; övrigt</a>
+                        <div class="list-group" id="categoryType">
+                            <a class="list-group-item" href="#" data-category-type="4"><i class="fa fa-home fa-fw"></i>&nbsp; Alla Kategorier</a>
+                            <a class="list-group-item" href="#" data-category-type="0"><i class="fa fa-car fa-fw"></i>&nbsp; Vägtrafik</a>
+                            <a class="list-group-item" href="#" data-category-type="1"><i class="fa fa-bus fa-fw"></i>&nbsp; Kollektivtrafik</a>
+                            <a class="list-group-item" href="#" data-category-type="2"><i class="fa fa-exclamation-triangle fa-fw"></i>&nbsp; Planerad störning</a>
+                            <a class="list-group-item" href="#" data-category-type="3"><i class="fa fa-cube fa-fw"></i>&nbsp; övrigt</a>
                         </div>
                         <div id="trafficListing" class="panel-body"></div>
                     </div>
@@ -51,5 +51,6 @@
             src="https://maps.googleapis.com/maps/api/js?key=<?= $api_key ?>&sensor=false">
         </script>
         <script src="script/map.js"></script>
+        <script src="script/trafficInfo.js"></script>
     </body>
 </html>

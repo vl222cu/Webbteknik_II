@@ -3,7 +3,7 @@
 class TrafficInfoHandler {
 
 private $maxNumberOfMessages = 100;
-private $file = 'src/file.json';
+private $file = "file.json";
 
 	public function __construct() {
 

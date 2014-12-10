@@ -7,7 +7,7 @@ html {
 }
 
 #map-canvas {
-    height: 500px;
+    height: 800px;
     width: 100%;
     background-color: #FFF;
     -moz-box-shadow: 0 0 5px 10px rgba(25,25,25,0.1);
@@ -16,7 +16,8 @@ html {
 }
 
 #trafficListing {
-  max-height: 350px;
+  max-height: 500px;
   overflow: auto; 
+  list-style-type: none;
  }
 

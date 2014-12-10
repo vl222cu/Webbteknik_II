@@ -9,7 +9,7 @@ var Map = function(latitude, longitude) {
 	this.markers = [];
 	var mapOptions = {
 		center: new google.maps.LatLng (this.latitude, this.longitude),
-        zoom: 4
+        zoom: 5
 	}
 
 	this.map = new google.maps.Map (document.getElementById('map-canvas'), mapOptions);
@@ -17,31 +17,46 @@ var Map = function(latitude, longitude) {
 
 Map.prototype.setMarker = function(location) {
 
+	var that = this;
 	var latLng = new google.maps.LatLng (location.latitude, location.longitude);
 	var marker = new google.maps.Marker ({
         position: latLng,
         map: this.map,
+        draggable: true
     });
 
 	this.markers.push(marker);
 
     google.maps.event.addListener(marker, 'click', function () {
 
-        this.getInfoWindow(location, marker);
+        that.getInfoWindow(location, marker);
     });
 };
 
 Map.prototype.deleteMarkers = function() {
 
-	for (var i = 0; i < markers.length; i++) {
+	for (var i = 0; i < this.markers.length; i++) {
     
-    	markers[i].setMap(null);
+    	this.markers[i].setMap(null);
   	}
 
 	this.markers = [];
 }
 
 Map.prototype.getInfoWindow = function(location, marker) {
+
+	var date = location.createddate;
+    var dateSplitted = date.split('+');
+    var firstHalf = dateSplitted[0];
+    var secHalf = firstHalf.split('(');
+    var unix = secHalf[1];
+    var newDate = new Date();
+    newDate.setTime(unix);
+    var category = "";
+    if (location.category == 0) { category = "Vägtrafik"};
+    if (location.category == 1) { category = "Kollektivtrafik"};
+    if (location.category == 2) { category = "Planerad störning"};
+    if (location.category == 3) { category = "Övrigt"};
 
 	if (this.infoWindow !== undefined) {
 
@@ -50,9 +65,9 @@ Map.prototype.getInfoWindow = function(location, marker) {
 
 	var contentString = "<div class='infoWinContent'>" +
 		"<h3>" + location.title + "</h3>" +
-		"<p>Skapad: " + location.createddate + "</p>" +
+		"<p>Skapad: " + newDate + "</p>" +
 		"<p>Trafikinformation: " + location.description + "</p>" +
-		"<p>Plats: " + location.exactlocation + "</p>" +
+		"<p>Kategori: " + category + "</p>" +
 		"</div";
 
 	this.infoWindow = new google.maps.InfoWindow({

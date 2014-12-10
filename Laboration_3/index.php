@@ -38,7 +38,7 @@
                 <div id="map-canvas"></div>
             </div>
             <footer>
-                <div class='col-md-5 page-header pull-left'>
+                <div class="col-md-5 page-header pull-right">
                     <h5>Created by Vivi Lam - vl222cu</h3>
                 </div>
             </footer>

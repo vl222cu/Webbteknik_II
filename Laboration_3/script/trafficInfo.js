@@ -15,7 +15,7 @@ var TrafficInfo = {
 		TrafficInfo.map = new Map(62.00, 15.00);
 
 		$("#categoryType").on('click', 'a', function() {
-			console.log("INNE");
+
 			TrafficInfo.map.deleteMarkers();
 		});
 
@@ -24,23 +24,20 @@ var TrafficInfo = {
 
 	getAllMessages: function() {
 
+		$(document).ready(function () {
 		$.ajax({
 			type: "GET",
-			url: "src/TrafficInfoHandler.php",
-			dataType: "json",
-			data: {"action": "handleCache"}
-
-			}).done(function (data) {
-
-				data = JSON.parse(data);
-				var messages = data["messages"];
-				console.log(messages);
+			url: "src/AjaxHandler.php",
+			data: { "action": "getAll"}
+			}).done(function(data) {
+				var messages = $.parseJSON(data);
 				TrafficInfo.renderMessages(messages);
 
 			}).fail(function (jqXHR, textStatus) {
 
 				console.log("Läsfel, status: " + textStatus);
 			});
+		});
 	},
 
 	renderMessages: function(messages) {

@@ -1,8 +1,5 @@
 <?php
-    require_once("src/TrafficInfoHandler.php");
     $api_key = file_get_contents('src/api_key.txt');
-    $trafficInfoHandler = new TrafficInfoHandler();
-    $trafficInfoHandler->handleCache();
 ?>
 <!DOCTYPE html>
 <html lang="sv">

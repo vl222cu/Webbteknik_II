@@ -17,7 +17,6 @@ var Map = function(latitude, longitude) {
 
 Map.prototype.setMarker = function(location) {
 
-	var that = this;
 	var latLng = new google.maps.LatLng (location.latitude, location.longitude);
 	var marker = new google.maps.Marker ({
         position: latLng,
@@ -28,7 +27,7 @@ Map.prototype.setMarker = function(location) {
 
     google.maps.event.addListener(marker, 'click', function () {
 
-        that.getInfoWindow(location, marker);
+        this.getInfoWindow(location, marker);
     });
 };
 
@@ -38,7 +37,7 @@ Map.prototype.deleteMarkers = function() {
     
     	markers[i].setMap(null);
   	}
-  	
+
 	this.markers = [];
 }
 

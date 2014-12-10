@@ -1,0 +1,22 @@
+/* <-------Applikationens inställningar---------->*/
+body, 
+html {
+  width: 100%;
+  height: 100%;
+  background-color: #FFF;
+}
+
+#map-canvas {
+    height: 500px;
+    width: 100%;
+    background-color: #FFF;
+    -moz-box-shadow: 0 0 5px 10px rgba(25,25,25,0.1);
+    -webkit-box-shadow: 0 0 5px 10px rgba(25,25,25,0.1);
+    box-shadow: 0 0 5px 10px rgba(25,25,25,0.1);
+}
+
+#trafficListing {
+  max-height: 350px;
+  overflow: auto; 
+ }
+

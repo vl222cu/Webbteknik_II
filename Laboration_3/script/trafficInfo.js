@@ -24,6 +24,11 @@ var TrafficInfo = {
 			that.categoryType = parseInt($(this).data("category-type"));
 			that.renderCategoryTypeToList();
 		});
+
+		$("#trafficListing").on("click", "a", function(){
+   			var msgIndex = parseInt($(this).data('message-id'));
+   			google.maps.event.trigger(that.map.markers[msgIndex], 'click');
+    	});
 	},
 
 	getAllMessages: function() {
@@ -70,17 +75,12 @@ var TrafficInfo = {
 
 			if(this.categoryType === 4 || this.categoryType === locationByCategory.category) {
 
-				trafficListing += '<li>' + '<a href="#" data-message-id="'+ i +'">' +  locationByCategory.title + '</a>' + '</li>';
-				locationByCategory.marker = i;
 				TrafficInfo.map.setMarker(locationByCategory);
+				var msgId = TrafficInfo.map.markers.length - 1;
+				trafficListing += '<li>' + '<a href="#" data-message-id="'+ msgId +'">' +  locationByCategory.title + '</a>' + '</li>';
 			}
 		}
 		$('#trafficListing').html(trafficListing);
-
-		$("#trafficListing").on("click", "a", function() {
-			that.msgId = parseInt($(this).data('message-id'));
-			new google.maps.event.trigger(that.locations[that.msgId].marker, "click");			
-		}); 
 	},
 };
 

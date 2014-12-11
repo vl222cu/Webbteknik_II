@@ -4,6 +4,7 @@ var TrafficInfo = {
 
 	map : undefined,
 	categoryType : 4,
+	msgId : 0,
 	locations : [],
 
 	init: function() {
@@ -53,7 +54,7 @@ var TrafficInfo = {
 		for(var i = 0; i < messages.length; i++){
 
 			var location = messages[i];
-			location.marker = TrafficInfo.map.setMarker(location);
+			TrafficInfo.map.setMarker(location);
 			this.locations.push(location);
 		}
 	},
@@ -69,14 +70,21 @@ var TrafficInfo = {
 
 			if(this.categoryType === 4 || this.categoryType === locationByCategory.category) {
 
-				trafficListing += "<li>" +  locationByCategory.title + "</li>";
-;
+				trafficListing += '<li>' + '<a href="#" data-message-id="'+ i +'">' +  locationByCategory.title + '</a>' + '</li>';
+				locationByCategory.marker = i;
 				TrafficInfo.map.setMarker(locationByCategory);
-				
 			}
 		}
 		$('#trafficListing').html(trafficListing);
-	},
-}
-window.onload = TrafficInfo.init;
 
+		$("#trafficListing").on("click", "a", function() {
+			that.msgId = parseInt($(this).data('message-id'));
+			new google.maps.event.trigger(that.locations[that.msgId].marker, "click");			
+		}); 
+	},
+};
+
+google.maps.event.addDomListener(window, 'load', function() {
+
+	TrafficInfo.init();
+});

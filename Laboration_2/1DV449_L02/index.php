@@ -6,11 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="shortcut icon" href="ico/favicon.png">
-    <link rel="stylesheet" type="text/css" href="./css/customstyle.css" />
+    <link rel="shortcut icon" href="pic/favicon.png">
+    <link rel="stylesheet" type="text/css" href="./css/mess.css" />
     <title>Mezzy Labbage - Logga in</title>
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" />
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
 
   </head>
 
@@ -24,7 +23,8 @@
         <input value="" name="password" type="password" class="form-control" placeholder="Password" required>
         <button class="btn btn-lg btn-primary btn-block" type="submit">Log in</button>
       </form>
-    </div> <!-- /container -->
+    </div>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
   </body>
 </html>
 

@@ -171,7 +171,7 @@ Laborationsrapport
 * Storlek: 523 KB
 * Laddningstid : 490ms-520ms
 
-> Det finns tre resurser som får status 404 Not Found, longpoll.js, b.jpg och logo.png. Tar bort dessa då longpoll.js saknas helt och b.jpg och logo.png inte används. CSS-filen dyn.css används inte alls så tar bort den också. Hittar även dubbla inkluderade script till jquery.js, tar bort den ena. Script.js har inget innehåll så tar bort den med. 
+> Det finns tre resurser som får status 404 Not Found, longpoll.js, b.jpg och logo.png. Tar bort longpoll.js då filen saknas helt och b.jpg då den inte används. CSS-filen dyn.css används inte heller så tar bort den också. Hittar även dubbla inkluderade script till jquery.js, tar bort den ena. Script.js har inget innehåll så tar bort den med. 
 
 > Laddningstiden går aningen snabbare enligt mätningen efter att ha rensat bland resurserna men inget man märker av direkt.
 

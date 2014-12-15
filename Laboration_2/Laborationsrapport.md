@@ -223,9 +223,12 @@ Laborationsrapport
 
 ### Long-Polling
 
-> Min lösning för long-polling har jag placerat i getMessages-funktionen i filen MessageBoard.js i och med det är i denna funktion som meddelanden hämtas från databasen. Jag har kapslat in ajaxanropet som egen funktion som i sin tur anropas första gången när man loggar in. Därefter har jag använt funktionen setInterval som gör ett anrop till ajaxfunktionen varannan sek för att stämma av om det kommit till några nya meddelanden som en räknare håller koll på mellan klienten och servern. Genom att radera messageArea och loopa igenom JSON-arrayen uppdateras samtliga meddelanden efter den timestamp de fått i databasen när meddelandet skapades. Då jag har använt mig av ORDER BY DESC i SQL-förfrågan vid hämtning av meddelanden i databasen hamnar det sista skrivna meddelandet högst upp i meddelandelistan.
+> Min lösning för long-polling har jag placerat i getMessage-funktionen i filen MessageEngine.php i och med att det är i denna funktion som meddelanden hämtas från databasen. Servern är inställd att loopa igenom datan i 20 sek innan timeout och under denna tid hämtas meddelandena från databasen. Då jag har använt mig av ORDER BY DESC i SQL-förfrågan hamnar det sista skrivna meddelandet högst upp i meddelandelistan. Tiden på det nyaste meddelandet sparas sedan ner i en variabel. Denna variabel i sin tur jämförs med tiden på det nyaste meddelandet på klienten. Om tiden skiljer sig åt finns det nya meddelanden att hämta. Loopen bryts i samband med hämtningen och de nya meddelanden renderas sedan ut av klienten. 
 
-> Fördelarna med denna lösning är att jag inte behövde skriva om koden alldeles för mycket och kunde använda mig av den kod som redan finns tillgänglig vilket sparade mig tid samt att nya meddelanden pushas upp med en gång i meddelandelistan. 
+> Fördelarna med denna lösning är att klienten inte behöver göra ständiga förfrågan till servern om uppdateringar utan servern meddelar klienten när det finns nya meddelanden att hämta. På detta sätt minskas antalet "connections" då den hålls öppen tills servern har något nytt att ge.
 
-> Nackdelen med denna lösning är att setInterval pågår i oändlighet så länge användaren är inloggad vilket gör att det blir en ständing upp -och nedkoppling mellan server och klient samt överföring av den stora http headern vid varje uppdatering är kostsamt ur en bandbredd och batteriförbruknings synvinkel.
+> Nackdelen med denna lösning är att servern måste hålla en "connection" öppen vilket kan försämra prestandan om många klienter använder sig av samma tjänst.
+
+
+
 

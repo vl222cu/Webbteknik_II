@@ -1,5 +1,4 @@
 <?php
-	require_once("get.php");
     require_once("sec.php");
     sec_session_start();
 ?>
@@ -47,6 +46,7 @@
         </div>
         <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
         <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        <script src="longPolling.js"></script>
         <script src="MessageBoard.js"></script>
         <script src="Message.js"></script>
 	</body>
